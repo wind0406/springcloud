@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.dao.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="springcloud.test.user.web.model.SysUser" >
+    <id column="SU_ID" property="suId" jdbcType="VARCHAR" />
+    <result column="SU_NAME" property="suName" jdbcType="VARCHAR" />
+    <result column="SU_PWD" property="suPwd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SU_ID, SU_NAME, SU_PWD
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where SU_ID = #{suId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_user
+    where SU_ID = #{suId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="springcloud.test.user.web.model.SysUser" >
+    insert into sys_user (SU_ID, SU_NAME, SU_PWD
+      )
+    values (#{suId,jdbcType=VARCHAR}, #{suName,jdbcType=VARCHAR}, #{suPwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="springcloud.test.user.web.model.SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="suId != null" >
+        SU_ID,
+      </if>
+      <if test="suName != null" >
+        SU_NAME,
+      </if>
+      <if test="suPwd != null" >
+        SU_PWD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="suId != null" >
+        #{suId,jdbcType=VARCHAR},
+      </if>
+      <if test="suName != null" >
+        #{suName,jdbcType=VARCHAR},
+      </if>
+      <if test="suPwd != null" >
+        #{suPwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="springcloud.test.user.web.model.SysUser" >
+    update sys_user
+    <set >
+      <if test="suName != null" >
+        SU_NAME = #{suName,jdbcType=VARCHAR},
+      </if>
+      <if test="suPwd != null" >
+        SU_PWD = #{suPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SU_ID = #{suId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="springcloud.test.user.web.model.SysUser" >
+    update sys_user
+    set SU_NAME = #{suName,jdbcType=VARCHAR},
+      SU_PWD = #{suPwd,jdbcType=VARCHAR}
+    where SU_ID = #{suId,jdbcType=VARCHAR}
+  </update>
+</mapper>
