@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>springcloud.test</groupId>
-	<artifactId>order</artifactId>
+	<artifactId>product</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>orderservice</name>
-	<description>orderservice</description>
+	<name>productservice</name>
+	<description>productservice</description>
 
 	<properties>
 		<java.version>1.8</java.version>
